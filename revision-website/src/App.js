@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 
 function App() {
   return (

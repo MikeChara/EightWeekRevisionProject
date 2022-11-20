@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import fetchMemes from "../API/index";
-import { Gallery } from "../API/List";
-import InputButton from "../API/Inputs";
+import { Gallery } from "../API/list";
+import InputButton from "../API/inputs";
 
 const FetchAndCreate = () => {
   useEffect(() => {

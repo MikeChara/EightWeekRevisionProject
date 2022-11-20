@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import fetchMemes, { data } from ".";
-import InputButton from "./Inputs";
+import InputButton from "./inputs";
+import sendToDB from "../database/index";
 
 // import Moveable from "react-moveable";
 
@@ -39,6 +40,10 @@ export function Gallery() {
   }
   let meme = memes[index];
 
+  function saveMeme() {
+    sendToDB(meme);
+  }
+
   if (!meme) {
     return <div>...Loading</div>;
   }
@@ -49,6 +54,8 @@ export function Gallery() {
         text="Previous Meme"
       ></InputButton>
       <InputButton onClick={handleNextClick} text="Next Meme"></InputButton>
+      <br></br>
+      <InputButton onClick={saveMeme} text="Save Meme"></InputButton>
       <h2>
         <i>{meme?.name}</i>
       </h2>

@@ -9,14 +9,14 @@ const Navbar = () => {
           <NavLink to="/about" activeStyle>
             About
           </NavLink>
-          <NavLink to="/contact" activeStyle>
-            Contact Us
+          <NavLink to="/fetchandcreate" activeStyle>
+            Create a Meme
           </NavLink>
-          <NavLink to="/blogs" activeStyle>
-            Blogs
+          <NavLink to="/savedmemes" activeStyle>
+            Saved Memes
           </NavLink>
-          <NavLink to="/sign-up" activeStyle>
-            Sign Up
+          <NavLink to="/browsergame" activeStyle>
+            Browser Game
           </NavLink>
         </NavMenu>
       </Nav>

@@ -6,18 +6,10 @@ const Navbar = () => {
     <>
       <Nav>
         <NavMenu>
-          <NavLink to="/about" activeStyle>
-            About
-          </NavLink>
-          <NavLink to="/fetchandcreate" activeStyle>
-            Create a Meme
-          </NavLink>
-          <NavLink to="/savedmemes" activeStyle>
-            Saved Memes
-          </NavLink>
-          <NavLink to="/browsergame" activeStyle>
-            Browser Game
-          </NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/fetchandcreate">Create a Meme</NavLink>
+          <NavLink to="/savedmemes">Saved Memes</NavLink>
+          <NavLink to="/browsergame">Browser Game</NavLink>
         </NavMenu>
       </Nav>
     </>
@@ -25,3 +17,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+//have deleted activeStyle after each Navlink due to error
+//<NavLink to="/about" activeStyle>

@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<FetchAndCreate />} />
+        <Route path="/fetchandcreate" element={<FetchAndCreate />} />
         <Route path="/savedmemes" element={<SavedMemes />} />
         <Route path="/browsergame" element={<BrowserGame />} />
       </Routes>

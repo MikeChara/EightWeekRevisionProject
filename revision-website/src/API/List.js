@@ -1,9 +1,9 @@
 import { useState } from "react";
+import fetchMemes from ".";
 let memes = [];
 
 export function sendData(memedata) {
   memes = memedata;
-  console.log(memes);
 }
 
 export function Gallery() {
@@ -11,6 +11,10 @@ export function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
+    if (index === 100) {
+      fetchMemes();
+      setIndex(0);
+    }
     setIndex(index + 1);
   }
 

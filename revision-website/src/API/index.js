@@ -1,9 +1,11 @@
-import { sendData } from "./List";
+// import { sendData } from "./List";
+
+export let data = [];
 
 async function fetchMemes() {
   let responseJSON = await fetch("https://api.imgflip.com/get_memes");
   let result = await responseJSON.json();
-  sendData(result.data.memes);
+  return result.data.memes;
 }
 
 export default fetchMemes;

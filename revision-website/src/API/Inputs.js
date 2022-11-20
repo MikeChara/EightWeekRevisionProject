@@ -1,7 +1,7 @@
-// import Moveable from "moveable";
+// import Moveable from "react-moveable";
 
-function InputButton({ onClick }) {
-  return <button onClick={onClick}>Get Popular Memes</button>;
+function InputButton({ onClick, text }) {
+  return <button onClick={onClick}>{text}</button>;
 }
 
 export default InputButton;

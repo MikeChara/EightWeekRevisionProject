@@ -30,12 +30,11 @@ export function Gallery() {
   }, [showMoreMemeDetails]);
 
   function handleNextMemeInListClick() {
-    if (MemeIndex < 100) {
-      setMemeIndex(MemeIndex + 1);
-    }
-    if (MemeIndex === 99) {
+    if (MemeIndex >= 99) {
       fetchMemes();
       setMemeIndex(0);
+    } else {
+      setMemeIndex(MemeIndex + 1);
     }
   }
 

@@ -7,38 +7,46 @@ import sendToDB from "../database/index";
 
 export function Gallery() {
   const [memes, setMemes] = useState([]);
-  const [index, setIndex] = useState(0);
-  const [showMore, setShowMore] = useState(false);
+  const [MemeIndex, setMemeIndex] = useState(0);
+  const [showMoreMemeDetails, setShowMoreMemeDetails] = useState(false);
+  const [moreDetailsButtonText, setmoreDetailsButtonText] =
+    useState("Show More Details?");
+
+  async function getAllTheMemes() {
+    const result = await fetchMemes(data);
+    setMemes(result);
+  }
 
   useEffect(() => {
-    async function wrap() {
-      const result = await fetchMemes(data);
-      setMemes(result);
-    }
-    wrap();
+    getAllTheMemes();
   }, []);
 
-  function handleNextClick() {
-    if (index < 100) {
-      setIndex(index + 1);
+  useEffect(() => {
+    if (showMoreMemeDetails === true) {
+      setmoreDetailsButtonText("Hide Additional Details");
+    } else {
+      setmoreDetailsButtonText("Show More Details?");
     }
+  }, [showMoreMemeDetails]);
 
-    if (index === 99) {
+  function handleNextMemeInListClick() {
+    if (MemeIndex < 100) {
+      setMemeIndex(MemeIndex + 1);
+    }
+    if (MemeIndex === 99) {
       fetchMemes();
-      setIndex(0);
+      setMemeIndex(0);
     }
   }
 
-  function handlePreviousClick() {
-    if (index > 0) {
-      setIndex(index - 1);
-    }
-  }
+  const handlePreviousMemeInListClick = () => {
+    MemeIndex > 0 && setMemeIndex(MemeIndex - 1);
+  };
 
-  function handleMoreClick() {
-    setShowMore(!showMore);
+  function handleMoreMemeDetailsClick() {
+    setShowMoreMemeDetails(!showMoreMemeDetails);
   }
-  let meme = memes[index];
+  let meme = memes[MemeIndex];
 
   function saveMeme() {
     sendToDB(meme);
@@ -50,26 +58,25 @@ export function Gallery() {
   return (
     <>
       <InputButton
-        onClick={handlePreviousClick}
+        onClick={handlePreviousMemeInListClick}
         text="Previous Meme"
       ></InputButton>
-      <InputButton onClick={handleNextClick} text="Next Meme"></InputButton>
-      <br></br>
+      <InputButton
+        onClick={handleNextMemeInListClick}
+        text="Next Meme"
+      ></InputButton>
       <InputButton onClick={saveMeme} text="Save Meme"></InputButton>
-      <h2>
-        <i>{meme?.name}</i>
-      </h2>
-      <h3>({index + 1}) of 100</h3>
-      <img src={meme?.url} alt={meme?.id} height="500px" />
-      <br></br>
-      <InputButton onClick={handleMoreClick} text="Show More?">
-        {showMore ? "Hide" : "Show additional details"}
-      </InputButton>
-      {showMore && (
+      <h2>{meme.name}</h2>
+      <h3>({MemeIndex + 1}) of 100</h3>
+      <img src={meme.url} alt={meme.id} height="500px" />
+      <InputButton
+        onClick={handleMoreMemeDetailsClick}
+        text={moreDetailsButtonText}
+      ></InputButton>
+      {showMoreMemeDetails && (
         <p>
-          url:{meme?.url}
-          <br></br>
-          usual text box count:{meme?.box_count}
+          url:{meme.url}
+          usual text box count:{meme.box_count}
         </p>
       )}
     </>

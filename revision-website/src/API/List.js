@@ -17,9 +17,8 @@ export function Gallery() {
     setMemes(result);
   }
 
-  useEffect(() => {
-    getAllTheMemes();
-  }, []);
+  useEffect(() => {}, []);
+  getAllTheMemes();
 
   useEffect(() => {
     if (showMoreMemeDetails === true) {

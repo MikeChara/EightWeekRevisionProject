@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+DISCUSSION:
+Have a general discussion about the comms styles:
+
+- What do you think about your dominant comms style?
+- Does it feel right?
+- If you were to meet 4 people and each had a different comms style, who would you struggle to connect with and why?
+
+Here’s a summary of the 4 x communication styles: https://sterka.team/comms-styles-intro
+
+If your first name has the most letters then you’re the facilitator! You’re in charge of making sure everyone gets the chance to talk.

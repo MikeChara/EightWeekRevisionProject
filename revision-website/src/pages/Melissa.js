@@ -104,3 +104,8 @@ function computeDividendTaxAllowance(dividendIncome, dividendAllowance) {
 }
 computeDividendTaxAllowance(dividendIncome, dividendAllowance);
 //DIVIDENDS CALCULATION
+
+/*
+INCOME TAX:
+
+*/

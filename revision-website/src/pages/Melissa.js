@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Display from "../components/Display";
 import Input from "../components/Input";
+import Button from "../components/Button";
 
 const Melissa = () => {
+  const [dividendIncome, setDividendIncome] = useState("");
+  const [dividendAllowance, setDividendAllowance] = useState("");
+  const [resultsDisplay, setResultsDisplay] = useState([]);
+
+  function handleClick() {
+    setResultsDisplay(
+      computeDividendTaxAllowance(dividendIncome, dividendAllowance)
+    );
+    console.log(dividendAllowance, dividendIncome);
+    setDividendAllowance("");
+    setDividendIncome("");
+  }
+
+  function handleChangeIncome(event) {
+    setDividendIncome(event.target.value);
+  }
+
+  function handleChangeAllowance(event) {
+    setDividendAllowance(event.target.value);
+  }
   return (
     <>
       <h1>A calculator to compute dividend payments.</h1>
@@ -16,18 +37,24 @@ const Melissa = () => {
           h3prop="Dividend Income"
           placeholder="£value"
           type="number"
+          onChange={handleChangeIncome}
         ></Input>
         <Input
           h3prop="Dividend Allowance"
           placeholder="£value"
           type="number"
-          showbutton
+          onChange={handleChangeAllowance}
         ></Input>
+        <Button
+          className="submit"
+          onClick={handleClick}
+          text={"submit"}
+        ></Button>
       </div>
       <Display
         h3prop="output"
         placeholder="put in values to get returns"
-        text="dave"
+        text={resultsDisplay}
       ></Display>
     </>
   );
@@ -41,21 +68,21 @@ savings income - PSA  = "remaining taxable savings" or "remaining PSA"
 */
 
 //SAVINGS CALCULATION
-let savingsIncome = 1000;
-const PSA = 5000;
-function computeSavingsTax(savingsIncome, PSA) {
-  const result = savingsIncome - PSA;
-  if (result < 0) {
-    const remainingPSA = Math.abs(result);
-    console.log(`You have £${remainingPSA} remaining PSA.`);
-  } else {
-    console.log(
-      `You have £${result} taxable savings income after PSA exhausted.`
-    );
-  }
-}
-computeSavingsTax(savingsIncome, PSA);
-//SAVINGS CALCULATION
+// let savingsIncome = 1000;
+// const PSA = 5000;
+// function computeSavingsTax(savingsIncome, PSA) {
+//   const result = savingsIncome - PSA;
+//   if (result < 0) {
+//     const remainingPSA = Math.abs(result);
+//     returnsArray.push(`You have £${remainingPSA} remaining PSA.`);
+//   } else {
+//     returnsArray.push(
+//       `You have £${result} taxable savings income after PSA exhausted.`
+//     );
+//   }
+// }
+// computeSavingsTax(savingsIncome, PSA);
+// //SAVINGS CALCULATION
 
 /*
 DIVIDENDS:
@@ -69,35 +96,34 @@ add the dividend allowance to the profit
 */
 
 //DIVIDENDS CALCULATION
-let dividendIncome = 160000;
-const dividendAllowance = 2000;
 function computeDividendTaxAllowance(dividendIncome, dividendAllowance) {
+  const result = [];
   let wasTaxedAdditionalRate = 0;
   let wasTaxedUpperRate = 0;
   let wasTaxedOrdinaryRate = 0;
-  console.log(`You have £${dividendIncome}, get ready for the taxman!`);
+  result.push(`You have £${dividendIncome}, get ready for the taxman!`);
   let remainingDividendIncome = dividendIncome - dividendAllowance;
   if (remainingDividendIncome < 0) {
     let remainingdividendAllowance = Math.abs(remainingDividendIncome);
-    console.log(
+    result.push(
       `You have £${remainingdividendAllowance} remaining dividendAllowance.`
     );
   } else {
-    console.log(
+    result.push(
       `You have £${remainingDividendIncome} taxable dividend income after the £2000 dividendAllowance was exhausted.`
     );
     if (remainingDividendIncome > 150000) {
       let taxedAtDividendAdditionalRate = remainingDividendIncome - 150000;
-      console.log(
+      result.push(
         `As you have over £150k, £${taxedAtDividendAdditionalRate} will be taxed at 38.1%.`
       );
       wasTaxedAdditionalRate = taxedAtDividendAdditionalRate * 0.381;
       let remainingDividendAfterAdditionalRate =
         taxedAtDividendAdditionalRate - wasTaxedAdditionalRate;
-      console.log(
+      result.push(
         `You were taxed £${wasTaxedAdditionalRate} at the additional rate.`
       );
-      console.log(
+      result.push(
         `You have £${remainingDividendAfterAdditionalRate} left for yourself of the £${taxedAtDividendAdditionalRate} after additional rate tax was applied to everything over £150,000.`
       );
       remainingDividendIncome = 150000;
@@ -105,28 +131,28 @@ function computeDividendTaxAllowance(dividendIncome, dividendAllowance) {
   }
   if (remainingDividendIncome <= 150000) {
     let taxedAtDividendUpperRate = remainingDividendIncome - 37700;
-    console.log(
+    result.push(
       `As you have over 37.7k, £${taxedAtDividendUpperRate} will be taxed at 32.5%`
     );
     wasTaxedUpperRate = taxedAtDividendUpperRate * 0.325;
     let remainingDividendAfterUpperRate =
       taxedAtDividendUpperRate - wasTaxedUpperRate;
-    console.log(`You were taxed £${wasTaxedUpperRate} at the additional rate.`);
-    console.log(
+    result.push(`You were taxed £${wasTaxedUpperRate} at the additional rate.`);
+    result.push(
       `You have £${remainingDividendAfterUpperRate} left for yourself of the £${taxedAtDividendUpperRate} after upper rate tax was applied to everything under £150,000 but above £37,700.`
     );
     remainingDividendIncome = 37700;
   }
   if (remainingDividendIncome <= 37700) {
     let taxedAtDividendOrdinaryRate = remainingDividendIncome;
-    console.log(`£${taxedAtDividendOrdinaryRate} will be taxed at 7.5%`);
+    result.push(`£${taxedAtDividendOrdinaryRate} will be taxed at 7.5%`);
     wasTaxedOrdinaryRate = taxedAtDividendOrdinaryRate * 0.075;
     let remainingDividendAfterOrdinaryRate =
       taxedAtDividendOrdinaryRate - wasTaxedOrdinaryRate;
-    console.log(
+    result.push(
       `You were taxed £${wasTaxedOrdinaryRate} at the ordinary rate.`
     );
-    console.log(
+    result.push(
       `You have £${remainingDividendAfterOrdinaryRate} left for yourself of the £${taxedAtDividendOrdinaryRate} after ordinary rate tax was applied to everything under £37,700.`
     );
   }
@@ -135,11 +161,11 @@ function computeDividendTaxAllowance(dividendIncome, dividendAllowance) {
   let remainingIncomeAfterTax = dividendIncome - totalTaxPaid;
   let remainingIncomeAfterTaxPlusAllowance =
     remainingIncomeAfterTax + dividendAllowance;
-  console.log(
+  result.push(
     `Of your £${dividendIncome}, you were taxed a total of £${totalTaxPaid}. Including your dividend allowance of £${dividendAllowance}, you will take home £${remainingIncomeAfterTaxPlusAllowance}. Dear me! Let's move our accounts to the Caymanns!`
   );
+  return result;
 }
-computeDividendTaxAllowance(dividendIncome, dividendAllowance);
 //DIVIDENDS CALCULATION
 
 /*

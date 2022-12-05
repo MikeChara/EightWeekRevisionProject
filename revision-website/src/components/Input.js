@@ -5,14 +5,15 @@ function Input(props) {
   const [text, setText] = useState("");
 
   function handleChange(event) {
+    props.onChange(event);
     setText(event.target.value);
   }
-  async function handleClick() {
+  function handleClick() {
     setText("");
   }
 
   return (
-    <form className="comment-form">
+    <form>
       <h3>{props.h3prop}</h3>
       <input
         type={props.type}

@@ -7,7 +7,7 @@ function Display({ text, placeholder, h3prop }) {
   return (
     <>
       <h3>{h3prop}</h3>
-      <div type="text" value={text} placeholder={placeholder}>
+      <div type="text" value="text" placeholder={placeholder}>
         {text}
       </div>
     </>

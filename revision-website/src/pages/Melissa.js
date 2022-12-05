@@ -54,7 +54,9 @@ const Melissa = () => {
       <Display
         h3prop="output"
         placeholder="put in values to get returns"
-        text={resultsDisplay}
+        text={resultsDisplay.map((e, i) => (
+          <p key={i}>{e}</p>
+        ))}
       ></Display>
     </>
   );

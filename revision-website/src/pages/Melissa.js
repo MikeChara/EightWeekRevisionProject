@@ -1,3 +1,40 @@
+import React from "react";
+import Display from "../components/Display";
+import Input from "../components/Input";
+
+const Melissa = () => {
+  return (
+    <>
+      <h1>A calculator to compute dividend payments.</h1>
+      <div>
+        Sadly this is not yet accurate as it only takes into account dividends,
+        not other taxation. Therefore the tax bands evaluated are most likely
+        incorrect.
+      </div>
+      <div>
+        <Input
+          h3prop="Dividend Income"
+          placeholder="£value"
+          type="number"
+        ></Input>
+        <Input
+          h3prop="Dividend Allowance"
+          placeholder="£value"
+          type="number"
+          showbutton
+        ></Input>
+      </div>
+      <Display
+        h3prop="output"
+        placeholder="put in values to get returns"
+        text="dave"
+      ></Display>
+    </>
+  );
+};
+
+export default Melissa;
+
 /*
 SAVINGS:
 savings income - PSA  = "remaining taxable savings" or "remaining PSA"

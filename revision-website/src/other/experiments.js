@@ -52,34 +52,34 @@
 // }
 // formatDuration(seconds);
 
-//return the digital root, eg 362: 3+6+2+ = 10, 10: 1+0 = digital root 1
-// let n = 983475937598345;
-// function digitalRoot(n) {
-//   let sn = n.toString();
-//   while (sn > 9) {
-//     let sum = 0;
-//     sn.split("").forEach((sne) => (sum = sum + +sne));
-//     console.log(sum);
-//     sn = sum.toString();
-//   }
-//   console.log("return console", sn);
-// }
-// digitalRoot(n);
-// function recursive(sn, sum = 0) {
-//   let lukelogic = 0;
-//   sn.split("").forEach((sne) => (sum = sum + +sne));
-//   while (sum > 9) {
-//     lukelogic = recursive(sum.toString());
-//     break;
-//   }
-//   if ((lukelogic < 9) & (sum > 9)) {
-//     console.log("returned sum", sum);
-//     console.log("lukelogic fired", lukelogic);
-//     return lukelogic;
-//   }
-//   console.log("sum fired", sum);
-//   return sum;
-// }
+return the digital root, eg 362: 3+6+2+ = 10, 10: 1+0 = digital root 1
+let n = 983475937598345;
+function digitalRoot(n) {
+  let sn = n.toString();
+  while (sn > 9) {
+    let sum = 0;
+    sn.split("").forEach((sne) => (sum = sum + +sne));
+    console.log(sum);
+    sn = sum.toString();
+  }
+  console.log("return console", sn);
+}
+digitalRoot(n);
+function recursive(sn, sum = 0) {
+  let logicBreak = 0;
+  sn.split("").forEach((sne) => (sum = sum + +sne));
+  while (sum > 9) {
+    logicBreak = recursive(sum.toString());
+    break;
+  }
+  if ((logicBreak < 9) & (sum > 9)) {
+    console.log("returned sum", sum);
+    console.log("logicBreak fired", logicBreak);
+    return logicBreak;
+  }
+  console.log("sum fired", sum);
+  return sum;
+}
 
 //turn this into a phone number like: (123) 456-7890"
 

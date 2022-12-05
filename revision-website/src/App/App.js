@@ -7,6 +7,7 @@ import About from "../pages/about";
 import SavedMemes from "../pages/savedmemes";
 import FetchAndCreate from "../pages/fetchandcreate";
 import BrowserGame from "../pages/browsergame";
+import Melissa from "../pages/Melissa";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/fetchandcreate" element={<FetchAndCreate />} />
         <Route path="/savedmemes" element={<SavedMemes />} />
         <Route path="/browsergame" element={<BrowserGame />} />
+        <Route path="/Melissa" element={<Melissa />} />
       </Routes>
     </Router>
   );

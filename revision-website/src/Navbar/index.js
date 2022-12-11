@@ -10,7 +10,6 @@ const Navbar = () => {
           <NavLink to="/fetchandcreate">Create a Meme</NavLink>
           <NavLink to="/savedmemes">Saved Memes</NavLink>
           <NavLink to="/browsergame">Browser Game</NavLink>
-          <NavLink to="/Melissa">Accountancy Homework</NavLink>
         </NavMenu>
       </Nav>
     </>

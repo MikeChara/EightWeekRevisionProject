@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import fetchMemes, { data } from ".";
-import InputButton from "./inputs";
+import InputButton from "./Inputs.js";
 import sendToDB from "../database/index";
 
 // import Moveable from "react-moveable";

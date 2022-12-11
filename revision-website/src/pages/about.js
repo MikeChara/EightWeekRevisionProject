@@ -5,7 +5,7 @@ const About = () => {
     <div>
       <h1>
         I've created this website as a means to consolidate my learning over the
-        past eight weeks
+        course of the bootcamp
       </h1>
       <br></br>
       <div>
